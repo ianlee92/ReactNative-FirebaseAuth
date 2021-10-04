@@ -18,7 +18,17 @@ const LoginScreen = () => {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.email);
+        console.log("Registered with:", user.email);
+      })
+      .catch((error) => alert(error.message));
+  };
+
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log("Logged in with:", user.email);
       })
       .catch((error) => alert(error.message));
   };
@@ -41,7 +51,7 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => {}} style={styles.button}>
+        <TouchableOpacity onPress={handleLogin} style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
